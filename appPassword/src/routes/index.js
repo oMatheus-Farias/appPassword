@@ -12,11 +12,19 @@ export default function Routes(){
             <Tab.Screen
                 name="Home"
                 component={ Home }
+                options={{
+                    tabBarShowLabel: false,
+                    headerShown: false
+                }}
             />
 
             <Tab.Screen
                 name="Passwords"
                 component={ Passwords }
+                options={{
+                    tabBarShowLabel: false,
+                    headerShown: false
+                }}
             />
         </Tab.Navigator>
     );
