@@ -4,7 +4,7 @@ export const Container = styled.View`
     flex: 1;
     background-color: #F3F3FF;
     align-items: center;
-    margin-top: 26px;
+    margin-top: 56px;
 `;
 
 export const Logo = styled.Image``;
@@ -13,7 +13,7 @@ export const PasswordArea = styled.View`
     width: 100%;
     align-items: center;
     padding: 0 36px;
-    gap: 32px;
+    gap: 42px;
 `;
 
 export const PasswordTextLength = styled.Text`
@@ -24,7 +24,7 @@ export const PasswordTextLength = styled.Text`
 
 export const Buttom = styled.TouchableOpacity`
     width: 100%;
-    height: 48px;
+    height: 52px;
     border-radius: 8px;
     background-color: #392DE9;
     align-items: center;
@@ -32,7 +32,7 @@ export const Buttom = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled.Text`
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
     color: #FFF;
 `;

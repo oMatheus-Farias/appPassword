@@ -1,6 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+import Icons from 'react-native-vector-icons/Feather';
+
 import Home from '../pages/Home/index';
 import Passwords from '../pages/Passwords/index';
 
@@ -14,7 +16,10 @@ export default function Routes(){
                 component={ Home }
                 options={{
                     tabBarShowLabel: false,
-                    headerShown: false
+                    headerShown: false,
+                    tabBarIcon: ({ size, focused }) => {
+                        return <Icons size={ size } color={ focused ? '#392DE4' : '#BBBB' } name="home" />
+                    }
                 }}
             />
 
@@ -23,7 +28,10 @@ export default function Routes(){
                 component={ Passwords }
                 options={{
                     tabBarShowLabel: false,
-                    headerShown: false
+                    headerShown: false,
+                    tabBarIcon: ({ size, focused }) => {
+                        return <Icons size={ size } color={ focused ? '#392DE4' : '#BBBB' } name="lock" />
+                    }
                 }}
             />
         </Tab.Navigator>
