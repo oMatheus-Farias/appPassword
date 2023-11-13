@@ -2,17 +2,35 @@ import React from "react";
 import { 
     Container,
     PasswordContent,
+    Title,
+    PasswordGenerateArea,
+    PasswordGenerateText,
+    BtnsArea,
     BtnClosedModal,
-    BtnClosedModalText 
+    BtnClosedModalText,
+    BtnsavePassword,
+    BtnsavePassworText 
 } from "./styled";
 
-export default function ModalPassword({ closedModal }){
+export default function ModalPassword({ closedModal, passwords }){
     return(
         <Container>
             <PasswordContent>
-                <BtnClosedModal onPress={ closedModal } >
-                    <BtnClosedModalText>Voltar</BtnClosedModalText>
-                </BtnClosedModal>
+                <Title>Senha gerada</Title>
+
+                <PasswordGenerateArea>
+                    <PasswordGenerateText>{ passwords[passwords.length - 1] }</PasswordGenerateText>
+                </PasswordGenerateArea>
+
+                <BtnsArea>
+                    <BtnClosedModal onPress={ closedModal } >
+                        <BtnClosedModalText>Voltar</BtnClosedModalText>
+                    </BtnClosedModal>
+
+                    <BtnsavePassword>
+                        <BtnsavePassworText>Salvar senha</BtnsavePassworText>
+                    </BtnsavePassword>
+                </BtnsArea>
             </PasswordContent>
         </Container>
     );
