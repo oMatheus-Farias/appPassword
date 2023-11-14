@@ -13,8 +13,6 @@ import RenderPasswords from "../../components/RenderPasswords";
 export default function Passwords(){
     let listPassword = ['dfddfdf', 'jopjpuup', 'jdidhosihdhs', 'hsuhdguisg'];
 
-
-
     return(
         <Container>
             <Header>
