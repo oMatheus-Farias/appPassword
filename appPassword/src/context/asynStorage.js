@@ -4,8 +4,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export const AsyncStorageContext = createContext({});
 
 export default function AsyncStorageProvider({ children }){
-    let [listPassword, setListPassword] = useState([]);
-
     const getItem = async (key) =>{
         try{
             const passwords = await AsyncStorage.getItem(key);
@@ -18,30 +16,33 @@ export default function AsyncStorageProvider({ children }){
 
     const setItem = async (key, pass) =>{
         try{
-            setListPassword((value) => [...value, pass])
-            await AsyncStorage.setItem(key, JSON.stringify(listPassword));
-            // let passwords = getItem(key);
-            // passwords.push(pass)
+            let passwords = await getItem(key);
+            passwords.push(pass);
 
-            // await AsyncStorage.removeItem(key)
+            await AsyncStorage.setItem(key, JSON.stringify(passwords));
         }catch(err){
             alert('Ops! Ocorreu um erro' + err);
         };
     };
 
-    const removeItem = async () =>{
+    const removeItem = async (key, item) =>{
         try{
+            let passwords = await getItem(key);
 
+            let myPasswords = passwords.filter(password => {
+                return (password !== item);
+            });
+
+            await AsyncStorage.setItem(key, JSON.stringify(myPasswords));
+            return myPasswords;
         }catch(err){
-
+            alert('Erro ao deletar' + err);
         };
     };
 
     return(
-        <AsyncStorageContext.Provider value={{ listPassword, setItem, getItem }} >
+        <AsyncStorageContext.Provider value={{ setItem, getItem, removeItem }} >
             { children }
         </AsyncStorageContext.Provider>
     );
 };
-
-// CONTINUAR: USAR USEEFFECT NA PAGINA MINHAS SENHAS USANDO A FUNC GET ITEM PARA SEMPRE BUSCAR OS DADOS NO ASYNC STORAGE

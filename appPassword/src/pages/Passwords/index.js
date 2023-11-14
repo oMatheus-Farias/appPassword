@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useIsFocused } from "@react-navigation/native";
 import { 
     Container,
     Header,
@@ -11,7 +12,24 @@ import RenderPasswords from "../../components/RenderPasswords";
 import { AsyncStorageContext } from "../../context/asynStorage";
 
 export default function Passwords(){
-    const { listPassword } = useContext(AsyncStorageContext);
+    const { getItem, removeItem } = useContext(AsyncStorageContext);
+    const [listPassword, setListPassword] = useState([]);
+    const focused = useIsFocused();
+
+    useEffect(() => {
+        async function handleGetItem(){
+            let password = await getItem('@password');
+            setListPassword(password);
+            console.log(listPassword)
+        };
+
+        handleGetItem();
+    }, [focused]);
+
+    async function handleDeletepassword(item){
+        const passwords = await removeItem('@password', item);
+        setListPassword(passwords);
+    };
 
     return(
         <Container>
@@ -22,7 +40,8 @@ export default function Passwords(){
             <ContentPasswords>
                 <ListPassword
                     data={ listPassword }
-                    renderItem={ ({ item }) => <RenderPasswords data={ item } /> }
+                    keyExtractor={ (item) => String(item) }
+                    renderItem={ ({ item }) => <RenderPasswords data={ item } deletePassword={ () => handleDeletepassword(item) } /> }
                 />
             </ContentPasswords>
         </Container>

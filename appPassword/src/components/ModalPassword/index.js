@@ -17,6 +17,12 @@ import { AsyncStorageContext } from "../../context/asynStorage";
 export default function ModalPassword({ closedModal, password }){
     const { setItem } = useContext(AsyncStorageContext);
 
+    async function handleCopy(){
+        await setItem('@password', password);
+        closedModal();
+        alert('Senha salva com sucesso');
+    };
+
     return(
         <Container>
             <PasswordContent>
@@ -31,7 +37,7 @@ export default function ModalPassword({ closedModal, password }){
                         <BtnClosedModalText>Voltar</BtnClosedModalText>
                     </BtnClosedModal>
 
-                    <BtnsavePassword onPress={  () => setItem('@password', password) } >
+                    <BtnsavePassword onPress={ handleCopy } > 
                         <BtnsavePassworText>Salvar senha</BtnsavePassworText>
                     </BtnsavePassword>
                 </BtnsArea>
