@@ -1,5 +1,4 @@
-import React from "react";
-import { AsyncStorage } from 'react-native';
+import React, { useContext } from "react";
 import { 
     Container,
     Header,
@@ -9,9 +8,10 @@ import {
 } from './styled';
 
 import RenderPasswords from "../../components/RenderPasswords";
+import { AsyncStorageContext } from "../../context/asynStorage";
 
 export default function Passwords(){
-    let listPassword = ['dfddfdf', 'jopjpuup', 'jdidhosihdhs', 'hsuhdguisg'];
+    const { listPassword } = useContext(AsyncStorageContext);
 
     return(
         <Container>

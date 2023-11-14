@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { 
     Container,
     PasswordContent,
@@ -12,7 +12,11 @@ import {
     BtnsavePassworText 
 } from "./styled";
 
+import { AsyncStorageContext } from "../../context/asynStorage";
+
 export default function ModalPassword({ closedModal, password }){
+    const { setItem } = useContext(AsyncStorageContext);
+
     return(
         <Container>
             <PasswordContent>
@@ -27,7 +31,7 @@ export default function ModalPassword({ closedModal, password }){
                         <BtnClosedModalText>Voltar</BtnClosedModalText>
                     </BtnClosedModal>
 
-                    <BtnsavePassword>
+                    <BtnsavePassword onPress={  () => setItem('@password', password) } >
                         <BtnsavePassworText>Salvar senha</BtnsavePassworText>
                     </BtnsavePassword>
                 </BtnsArea>
