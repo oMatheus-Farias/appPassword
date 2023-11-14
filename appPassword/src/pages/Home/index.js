@@ -13,11 +13,11 @@ import Slider from '@react-native-community/slider';
 import ModalPassword from "../../components/ModalPassword";
 
 let charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRESTUVWXYZ123456789';
-let passwords = [];
 
 export default function Home(){
     const [sliderValue, setSliderValue] = useState(10);
     const [modalVisible, setModalVisible] = useState(false);
+    const [passwordValue, setPasswordValue] = useState('');
     
     function generatePassword(){
         let password = '';
@@ -26,10 +26,8 @@ export default function Home(){
             password += charset.charAt(Math.floor(Math.random() * n));
         };
 
-        // alert(password);
+        setPasswordValue(password);
         setModalVisible(true);
-        passwords.push(password);
-        console.log(passwords);
     };
 
     return(
@@ -56,7 +54,7 @@ export default function Home(){
             </PasswordArea>
 
             <Modal visible={ modalVisible } transparent={ true } animationType='slide' >
-                <ModalPassword closedModal={ () => setModalVisible(false) }  passwords={ passwords } />
+                <ModalPassword closedModal={ () => setModalVisible(false) }  password={ passwordValue } />
             </Modal>
         </Container>
     );

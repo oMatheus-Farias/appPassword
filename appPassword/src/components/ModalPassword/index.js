@@ -12,14 +12,14 @@ import {
     BtnsavePassworText 
 } from "./styled";
 
-export default function ModalPassword({ closedModal, passwords }){
+export default function ModalPassword({ closedModal, password }){
     return(
         <Container>
             <PasswordContent>
                 <Title>Senha gerada</Title>
 
                 <PasswordGenerateArea>
-                    <PasswordGenerateText>{ passwords[passwords.length - 1] }</PasswordGenerateText>
+                    <PasswordGenerateText>{ password }</PasswordGenerateText>
                 </PasswordGenerateArea>
 
                 <BtnsArea>
